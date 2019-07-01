@@ -102,7 +102,14 @@ class UserController extends Controller
         return ['message' => 'User Deleted'];
     }
 
-    public function updateProfile(){
+    public function updateProfile(Request $request){
         $user = auth('api')->user();
+
+        if($request->photo){
+            $name = time().'.'.explode('/',explode(':', substr($request->photo, 0,strpos($request->photo, ';')))[1][1]; 
+        }
+        \Image::make($request->photo)->save()
+
+
     }
 }
