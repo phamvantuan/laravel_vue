@@ -9,6 +9,11 @@ use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth:api');
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -54,6 +59,13 @@ class UserController extends Controller
         //
     }
 
+
+
+    public function profile()
+    {
+        return auth('api')->user();
+    }
+
     /**
      * Update the specified resource in storage.
      *
@@ -88,5 +100,9 @@ class UserController extends Controller
         $user = User::findOrFail($id);
         $user->delete();
         return ['message' => 'User Deleted'];
+    }
+
+    public function updateProfile(){
+        $user = auth('api')->user();
     }
 }

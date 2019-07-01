@@ -205,7 +205,6 @@
         //Send request to the server
         if (result.value) {
         this.form.delete('api/user/'+id).then(() => {
-          
           Swal.fire(
             'Deleted!',
             'Your file has been deleted.',
